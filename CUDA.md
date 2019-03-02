@@ -89,7 +89,7 @@ sudo make
 cd bin/x86_64/linux/release 
 ./deviceQuery
 
-如果出现则成功：
+![如果出现则成功：](./images/cuda/安装成功.png)
 
 
 2.6注意点：期间可以参考官方文档进行操作
