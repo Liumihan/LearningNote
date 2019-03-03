@@ -86,3 +86,103 @@ L0是统计这个向量当中非零元素的个数，L1是每个元素的绝对�
 其中L0和L1可以实现参数稀疏，因为他们都可以让参数变成0，L2又叫岭回归（Ridge Regression）或者权值衰减（Weight Decay)
 
 L1 比 L0好是因为L0不容易求解。L1会趋向于产生少量的特征，L2会选择更多的特征，L1在特征选择的时候有用，L2只是一种规则化。
+
+#### optimiaer优化器
+
+https://blog.csdn.net/huplion/article/details/79184338
+
+1. SGD
+
+   x += leraning_rate * dx
+
+   缺点：容易陷入局部极值点中。
+
+2. Momentum 增加动量
+
+   v = momentum * v - learning_rate * dx
+
+   x += v
+
+3. Adgrad 让他们在不同方向的特征的进行缩放，使他们有相近似的尺度
+
+   cache += dx**2
+
+   x += -learning_rate * dx / np.sqrt(cache)
+
+4. RMSProp 
+
+   adgrad随着时间的推移会导致，cache变大，导致学习率降低。
+
+   cache = decay_rate * cache + (1 - decay_rate) * dx**2
+
+   x += - learning_rate * dx / np.sqrt(cache)
+
+5. Adam
+
+   Adam 是Adgrad 和 Momentum的合体
+
+   m = beta1 * m + (1 - beta1) *dx
+
+   v = beta2 * v + (1 - beta2) * dx**2
+
+   m /= 1 - beta1**t
+
+   v /= 1 - beta2**t
+
+   x += -learning_rate * m / np.sqrt(v)
+
+6. 牛顿法
+
+   计算海森矩阵所需要的计算量过大。
+
+##### BP算法推导
+
+![](./images/DeepLearning/BP.png)
+
+1. add gate 平均分配上流梯度
+2. mutiply gate 交换相乘
+3. max gate 送到大的一方
+
+##### DropOut
+
+随机使某些神经元失活。
+
+起作用的原因：
+
+1. 降低节点之间的依赖性，降低结构风险，使模型的泛化能力加强。
+2. 类似于多模型投票一样，平衡神经元之间的重要性。不会出现高权重节点完全控制输出的情况。
+
+##### 防止Softmax函数的上溢和下溢
+
+https://blog.csdn.net/m0_37477175/article/details/79686164
+
+1. 在softmax时，同时除以e^{S_max}
+2. 在log softmax时也同事除以e^max次方
+
+##### BN
+
+https://www.cnblogs.com/guoyaohua/p/8724433.html
+
+解决的问题：均值偏移
+
+解决方法：
+
+1. 训练：
+   $$
+   \hat x^{k} = \frac {x^{(k)} - E[x^{(k)}]} {\sqrt {Var[x^{(k)}]}}
+   $$
+
+   $$
+   y^{(k)} = \gamma^{(k)}\hat x^{k} + \beta^{(k)}
+   $$
+
+2. 测试：第一步的方差和期望都是全局方差和期望，第二部的gamma和beta都是训练好了的。
+
+优点：1.提升训练速度，2.增加分类效果，3.初始化要求降低。
+
+#### 全局平均池化层
+
+GAP相对于FC的优势：
+
+1. 参数更少
+2. 因为参数少减少了过拟合

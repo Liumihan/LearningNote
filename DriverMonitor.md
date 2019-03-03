@@ -20,3 +20,7 @@ http://www.elecfans.com/d/760959.html
 ##### 疲劳监测技术发展趋势（PPT）
 
 https://wenku.baidu.com/view/b03ce98b02020740be1e9bac.html
+
+#### 交通运输不关于驾驶员监测技术（DMS）推广政策
+
+http://www.sohu.com/a/253902183_385219

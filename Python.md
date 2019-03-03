@@ -47,3 +47,16 @@ print re.sub(r‘\s+’, ‘-‘, text)
 
 
 
+#### python中闭包
+
+字面定义：闭包是函数及其相关的引用环境组合而成的实体。在一个内部函数里，对在外部作用域的变量进行引用，那么内部函数就被认为是闭包
+
+```python
+def add(x)：
+	def adder(y): return x+Y
+    reutrn adder
+c = add(x)
+c(10)  # 结果是18
+```
+
+在这里adder(y) 就是内部函数，就是一个闭包。
