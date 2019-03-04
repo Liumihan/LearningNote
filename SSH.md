@@ -16,9 +16,9 @@
 
 2 使用下面的命令 改变映射
 
-ssh -L <local port>:<remote host>:<remote port> <SSH hostname>
+ssh -L *local port*:*remote host*:*remote port* *SSH hostname*
 
-ssh -L <local jupyter port>:localhost:<remote jupyter port> <remote ip> -p <remote port > -l <username>
+ssh -L ***local_jupyter_port***:localhost:***remote_jupyter_port*** ***remote_ip*** -p ***remote_port***  -l ***username***
 
 nohup jupyter notebook &
 
@@ -28,6 +28,6 @@ nohup jupyter notebook &
 
 使用scp下载服务器上面的数据:
 
-scp -P *port* *username*@*server ip*:*server file path* *local file path*
+scp -P *port* *username*@*server_ip*:*server_file_path* *local_file_path*
 
 http://www.hypexr.org/linux_scp_help.php
